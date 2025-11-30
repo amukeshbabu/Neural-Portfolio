@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio of Mukesh Babu A - Full Stack Developer and UI/UX Enthusiast.">
+    <title>Mukesh Babu A | Portfolio</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <link rel="icon" type="image/png" href="Assests/Screenshot 2025-11-28 160822.png">
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        /* --- CUSTOM DIALOG UI --- */
+        .dialog-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 9999; /* Higher than navbar */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .dialog-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .dialog-box {
+            background: #0f0f0f; /* Match --bg-card */
+            border: 1px solid #222; /* Match --border */
+            width: 90%;
+            max-width: 400px;
+            padding: 35px 30px;
+            border-radius: 16px;
+            text-align: center;
+            transform: translateY(20px) scale(0.95);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+        }
+
+        .dialog-overlay.active .dialog-box {
+            transform: translateY(0) scale(1);
+        }
+
+        .dialog-icon-wrapper {
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid #222;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px auto;
+            font-size: 26px;
+        }
+
+        /* Dialog Themes */
+        .dialog-success .dialog-icon-wrapper {
+            color: #00ff88;
+            border-color: #00ff88;
+            background: rgba(0, 255, 136, 0.1);
+        }
+
+        .dialog-error .dialog-icon-wrapper {
+            color: #ff0000; /* Fallback if var(--accent) fails */
+            color: var(--accent);
+            border-color: var(--accent);
+            background: rgba(255, 0, 0, 0.1);
+        }
+
+        .dialog-loading .dialog-icon-wrapper {
+            color: #a3a3a3;
+            border-color: #333;
+        }
+
+        .dialog-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .dialog-msg {
+            color: #a3a3a3;
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .dialog-btn {
+            width: 100%;
+            padding: 14px;
+            background: #ff0000; /* Fallback */
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            transition: 0.3s;
+        }
+
+        .dialog-btn:hover {
+            filter: brightness(1.2);
+            box-shadow: 0 5px 20px rgba(255, 0, 0, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        /* Hide button during loading state */
+        .dialog-loading .dialog-btn {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="logo">Mukesh<span>.</span></div>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li class="dropdown">
+                <button class="dropbtn" id="menuBtn" aria-label="Toggle Menu">
+                    Menu <i class="fas fa-chevron-down" style="font-size: 10px;"></i>
+                </button>
+                <div class="dropdown-content" id="myDropdown">
+                    <a href="#about">About Me</a>
+                    <a href="#skills">Skills</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#experience">Experience</a>
+                    <a href="#education">Education</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+
+    <section id="home" class="hero">
+        <img src="Assests/Gemini_Generated_Image_olhozbolhozbolho.png" class="hero-bg" alt="Background" fetchpriority="high">
+
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+            <h1>Mukesh Babu A</h1>
+            <h2>Aspiring Full-Stack Developer | UI/UX Enthusiast</h2>
+        </div>
+
+        <div class="scroll-indicator"></div>
+    </section>
+
+    <main class="container">
+
+        <section id="about">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-container">
+                <div class="about-text">
+                    <p>
+                        I’m Mukesh, a results-driven Computer Science Engineering student at <span
+                            style="color:white; font-weight:600;">Thiagarajar College of Engineering</span>.
+                        I blend technical precision with creative design to build user-focused digital products.
+                    </p>
+                    <br>
+                    <p>
+                        My expertise spans <b>Full-Stack Development</b> (React, Node, Flask) and <b>Database
+                            Management</b> (MySQL, MongoDB).
+                        I am an adaptable learner, always exploring modern tools to build scalable solutions.
+                    </p>
+                    <br>
+                    <a href="#contact" class="link-btn" style="color: var(--accent);">Let's Connect <i
+                            class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="about-image-wrapper">
+                    <img src="Assests/IMG_20240915_113342.png" alt="Mukesh Babu" class="about-image" loading="lazy"
+                        onerror="this.src='https://via.placeholder.com/400x450/111/333?text=Mukesh'">
+                </div>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="card skill-card">
+                    <h3><i class="fas fa-code"></i> Languages</h3>
+                    <p>Java, C, Python, JavaScript</p>
+                </div>
+                <div class="card skill-card">
+                    <h3><i class="fas fa-laptop-code"></i> Frontend</h3>
+                    <p>ReactJS, Tailwind CSS, HTML5, CSS3</p>
+                </div>
+                <div class="card skill-card">
+                    <h3><i class="fas fa-server"></i> Backend</h3>
+                    <p>NodeJS, Python Flask, MySQL, MongoDB</p>
+                </div>
+                <div class="card skill-card">
+                    <h3><i class="fas fa-tools"></i> Tools</h3>
+                    <p>GitHub, Figma, VS Code, Agile</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="grid-layout">
+                <div class="card">
+                    <h3>AgriConnect</h3>
+                    <div class="tech-stack">
+                        <span class="pill">React</span>
+                        <span class="pill">Node.js</span>
+                        <span class="pill">MySQL</span>
+                    </div>
+                    <p>Unified e-farming marketplace bridging farmers and buyers. Features real-time demand analytics.</p>
+                    <a href="#" class="link-btn">View Project <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="card">
+                    <h3>Float Chat</h3>
+                    <div class="tech-stack">
+                        <span class="pill">Python</span>
+                        <span class="pill">RAG AI</span>
+                        <span class="pill">PostgreSQL</span>
+                    </div>
+                    <p>AI-powered ocean analytics platform processing NetCDF files with hybrid semantic search.</p>
+                    <a href="#" class="link-btn">View Project <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="card">
+                    <h3>VMeet</h3>
+                    <div class="tech-stack">
+                        <span class="pill">React</span>
+                        <span class="pill">MongoDB</span>
+                        <span class="pill">Node.js</span>
+                    </div>
+                    <p>Smart meeting room booking system with real-time availability tracking.</p>
+                    <a href="#" class="link-btn">View Project <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience">
+            <h2 class="section-title">Experience</h2>
+            <div class="grid-layout">
+                <div class="card">
+                    <div style="display:flex; justify-content:space-between; margin-bottom:10px;">
+                        <h3 style="margin:0;">Software Intern</h3>
+                        <span style="color:var(--accent); font-size: 1rem; font-weight: 600">Tech Solutions</span>
+                    </div>
+                    <p>Developed full-stack modules using ReactJS and NodeJS. Integrated REST APIs and optimized workflows.</p>
+                </div>
+                <div class="card">
+                    <div style="display:flex; justify-content:space-between; margin-bottom:10px;">
+                        <h3 style="margin:0;">Freelance Developer</h3>
+                        <span style="color:var(--accent); font-size: 1rem; font-weight: 600;">Self-Employed</span>
+                    </div>
+                    <p>Designed responsive websites for small businesses. Delivered UI/UX-enhanced interfaces.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="education">
+            <h2 class="section-title">Education</h2>
+            <div class="grid-layout">
+                <div class="card">
+                    <h3>B.E CSE</h3>
+                    <p style="color:white;">Thiagarajar College of Engineering</p>
+                    <p>CGPA: 8.07</p>
+                </div>
+                <div class="card">
+                    <h3>Diploma CE</h3>
+                    <p style="color:white;">PSG Polytechnic</p>
+                    <p>Percentage: 92.85%</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="activities">
+            <div class="grid-layout">
+                <div>
+                    <h2 class="section-title">Certifications</h2>
+                    <div class="card">
+                        <ul class="styled-list">
+                            <li><i class="fas fa-certificate"></i> NPTEL – Social Networks</li>
+                            <li><i class="fas fa-certificate"></i> Google Cloud Agentic AI Day</li>
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                    <h2 class="section-title">Activities</h2>
+                    <div class="card">
+                        <ul class="styled-list">
+                            <li><i class="fas fa-trophy"></i> Samgatha × Vashisht ’25 – IIITDM</li>
+                            <li><i class="fas fa-trophy"></i> PSG iTech Hackfest 2025</li>
+                            <li><i class="fas fa-trophy"></i> Smart India Hackathon 2025</li>
+                            <li><i class="fas fa-gamepad"></i> Chess.com 400+ rating</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="grid-layout" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+                <div>
+                    <p style="margin-bottom: 30px; color: #ccc;">Interested in collaborating? Feel free to reach out via
+                        email or social media.</p>
+                    <div class="social-links">
+                        <a href="https://linkedin.com/in/mukesh-babu-a-46945b361" class="social-icon"
+                            aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/Mukeshbabu" class="social-icon" aria-label="GitHub"><i
+                                class="fab fa-github"></i></a>
+                        <a href="mailto:mukesh6879babu@gmail.com" class="social-icon" aria-label="Email"><i
+                                class="fas fa-envelope"></i></a>
+                        <a href="tel:+919488043248" class="social-icon" aria-label="Phone"><i
+                                class="fas fa-phone"></i></a>
+                    </div>
+                </div>
+
+                <form id="contactForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" class="form-input" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" class="form-input" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        © 2025 Mukesh<span>.</span> — All Rights Reserved.
+    </footer>
+
+    <div id="customDialog" class="dialog-overlay">
+        <div class="dialog-box" id="dialogBox">
+            <div class="dialog-icon-wrapper" id="dialogIcon">
+                <i class="fas fa-check"></i>
+            </div>
+            <h3 class="dialog-title" id="dialogTitle">Success</h3>
+            <p class="dialog-msg" id="dialogMsg">Operation completed successfully.</p>
+            <button class="dialog-btn" onclick="closeDialog()">Okay</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+
+            /* --- 1. OPTIMIZED NAVBAR SCROLL --- */
+            const nav = document.querySelector(".navbar");
+            let scrollTimer = null;
+
+            window.addEventListener("scroll", () => {
+                if (scrollTimer) return;
+                scrollTimer = setTimeout(() => {
+                    nav.classList.toggle("scrolled", window.scrollY > 50);
+                    scrollTimer = null;
+                }, 10);
+            });
+
+            /* --- 2. UNIFIED ANIMATION OBSERVER --- */
+            const observerOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                        const cards = entry.target.querySelectorAll('.card');
+                        cards.forEach((card, index) => {
+                            card.style.transitionDelay = `${index * 100}ms`;
+                            card.classList.add('animate-card');
+                        });
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll("section").forEach(sec => observer.observe(sec));
+
+            /* --- 3. DROPDOWN LOGIC --- */
+            const menuBtn = document.getElementById("menuBtn");
+            const dropdown = document.getElementById("myDropdown");
+            const dropdownLinks = dropdown.querySelectorAll("a");
+
+            menuBtn.addEventListener("click", (e) => {
+                e.stopPropagation();
+                dropdown.classList.toggle("show");
+            });
+
+            dropdownLinks.forEach(link => {
+                link.addEventListener("click", () => dropdown.classList.remove("show"));
+            });
+
+            window.addEventListener("click", (e) => {
+                if (!e.target.closest('.dropdown')) {
+                    dropdown.classList.remove("show");
+                }
+            });
+
+            /* --- 4. DIALOG UTILITY FUNCTIONS --- */
+            window.showDialog = function(type, title, message) {
+                const overlay = document.getElementById('customDialog');
+                const box = document.getElementById('dialogBox');
+                const iconContainer = document.getElementById('dialogIcon');
+                const titleEl = document.getElementById('dialogTitle');
+                const msgEl = document.getElementById('dialogMsg');
+
+                // Reset classes
+                box.classList.remove('dialog-success', 'dialog-error', 'dialog-loading');
+
+                titleEl.innerText = title;
+                msgEl.innerText = message;
+
+                if (type === 'success') {
+                    box.classList.add('dialog-success');
+                    iconContainer.innerHTML = '<i class="fas fa-check"></i>';
+                } else if (type === 'error') {
+                    box.classList.add('dialog-error');
+                    iconContainer.innerHTML = '<i class="fas fa-times"></i>';
+                } else if (type === 'loading') {
+                    box.classList.add('dialog-loading');
+                    iconContainer.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i>';
+                }
+                overlay.classList.add('active');
+            }
+
+            window.closeDialog = function() {
+                document.getElementById('customDialog').classList.remove('active');
+            }
+            
+            // Allow clicking background to close (unless loading)
+            document.getElementById('customDialog').addEventListener('click', (e) => {
+                const box = document.getElementById('dialogBox');
+                if (e.target === document.getElementById('customDialog') && !box.classList.contains('dialog-loading')) {
+                    closeDialog();
+                }
+            });
+
+            /* --- 5. FORM SUBMISSION WITH DIALOG --- */
+            const contactForm = document.getElementById("contactForm");
+            if (contactForm) {
+                contactForm.addEventListener("submit", async function (e) {
+                    e.preventDefault();
+                    
+                    // Show Loading State inside Dialog
+                    showDialog('loading', 'Sending Message...', 'Please wait while we connect to the server.');
+
+                    const formData = {
+                        name: document.getElementById("name").value.trim(),
+                        email: document.getElementById("email").value.trim(),
+                        message: document.getElementById("message").value.trim()
+                    };
+
+                    try {
+                        const res = await fetch("http://localhost:5000/api/contact", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify(formData)
+                        });
+
+                        const data = await res.json();
+                        
+                        if (res.ok) {
+                            // Show Success Dialog
+                            showDialog('success', 'Message Sent!', 'Thanks for reaching out. I will get back to you soon.');
+                            contactForm.reset();
+                        } else {
+                            // Show Error Dialog (Server side)
+                            showDialog('error', 'Submission Failed', data.message || "Something went wrong.");
+                        }
+                    } catch (error) {
+                        console.error(error);
+                        // Show Network Error Dialog
+                        showDialog('error', 'Connection Error', 'Could not connect to the server. Please check your internet connection.');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            background: linear-gradient(135deg, #000000, #242424);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-box {
+            width: 350px;
+            background: #ffffff10;
+            backdrop-filter: blur(15px);
+            padding: 40px 30px;
+            border-radius: 16px;
+            box-shadow: 0 0 40px rgba(0,0,0,0.3);
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            text-align: center;
+            color: white;
+            margin-bottom: 25px;
+            font-size: 26px;
+            font-weight: 600;
+        }
+
+        .input-box {
+            margin-bottom: 20px;
+        }
+
+        .input-box input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: none;
+            background: #ffffff20;
+            color: white;
+            font-size: 15px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .input-box input:focus {
+            background: #ffffff30;
+            box-shadow: 0 0 8px rgba(255,255,255,0.4);
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: none;
+            background: #ffbf00;
+            color: black;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #ffaa00;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255,191,0,0.5);
+        }
+
+        .note {
+            text-align: center;
+            margin-top: 15px;
+            color: #ddd;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-box">
+    <h2>Admin Login</h2>
+
+    <div class="input-box">
+        <input type="password" id="pass" placeholder="Enter admin password">
+    </div>
+
+    <button onclick="login()">LOGIN</button>
+
+    <p class="note">Authorized access only</p>
+</div>
+
+<script>
+async function login() {
+    const password = document.getElementById("pass").value;
+
+    const res = await fetch("/.netlify/functions/admin-auth", {
+        method: "POST",
+        body: JSON.stringify({ password })
+    });
+
+    const data = await res.json();
+
+    if (data.token === "granted") {
+        localStorage.setItem("adminAuth", "yes");
+        window.location.href = "AdminPage.html";
+    } else {
+        alert("Incorrect password!");
+    }
+}
+</script>
+
+</body>
+</html>
