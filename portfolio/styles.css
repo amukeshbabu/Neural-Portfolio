@@ -366,7 +366,7 @@ section.visible {
 /* ABOUT SECTION */
 .about-container {
     display: grid;
-    grid-template-columns: 4fr 2fr;
+    grid-template-columns: 4.5fr 2fr;
     gap: 80px;
     /* Reduced gap */
     align-items: center;
