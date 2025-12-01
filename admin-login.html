@@ -23,7 +23,11 @@
         }
 
         /* 2. CORE LAYOUT */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         body {
             font-family: var(--font);
@@ -53,7 +57,10 @@
         }
 
         @keyframes fadeIn {
-            to { opacity: 1; transform: translateY(0); }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .login-box h3 {
@@ -62,6 +69,7 @@
             margin-bottom: 5px;
             color: var(--text-main);
         }
+
         .login-box p {
             color: var(--text-muted);
             margin-bottom: 25px;
@@ -69,7 +77,9 @@
         }
 
         /* 4. FORM ELEMENTS */
-        .input-group { margin-bottom: 20px; }
+        .input-group {
+            margin-bottom: 20px;
+        }
 
         .password-input {
             width: 100%;
@@ -102,6 +112,7 @@
             text-transform: uppercase;
             font-size: 0.95rem;
         }
+
         .login-btn:hover {
             background: #cc0000;
             transform: translateY(-2px);
@@ -110,112 +121,172 @@
 
         /* 5. CUSTOM DIALOG MODAL (For login feedback) */
         .dialog-overlay {
-            position: fixed; inset: 0;
-            background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(5px);
-            z-index: 9999; display: flex; align-items: center; justify-content: center;
-            opacity: 0; visibility: hidden; transition: all 0.3s ease;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
         }
-        .dialog-overlay.active { opacity: 1; visibility: visible; }
+
+        .dialog-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
         .dialog-box {
-            background: var(--bg-card); border: 1px solid var(--border);
-            width: 90%; max-width: 350px; padding: 35px 30px; border-radius: 16px;
-            text-align: center; transform: translateY(20px) scale(0.95);
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            width: 90%;
+            max-width: 350px;
+            padding: 35px 30px;
+            border-radius: 16px;
+            text-align: center;
+            transform: translateY(20px) scale(0.95);
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
         }
-        .dialog-overlay.active .dialog-box { transform: translateY(0) scale(1); }
-        .dialog-icon-wrapper {
-            width: 65px; height: 65px; border-radius: 50%;
-            background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border);
-            display: flex; align-items: center; justify-content: center;
-            margin: 0 auto 20px auto; font-size: 26px;
-        }
-        /* Error State (for incorrect password) */
-        .dialog-error .dialog-icon-wrapper { color: var(--accent); border-color: var(--accent); background: rgba(255, 0, 0, 0.1); }
-        .dialog-title { font-size: 1.3rem; font-weight: 600; color: white; margin-bottom: 10px; }
-        .dialog-msg { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 25px; line-height: 1.6; }
-        .dialog-btn {
-            width: 100%; padding: 12px; background: var(--accent); color: white;
-            border: none; border-radius: 8px; font-weight: 600; cursor: pointer;
-            text-transform: uppercase; font-size: 0.9rem; transition: 0.3s;
-        }
-        .dialog-btn:hover { background: #cc0000; box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3); transform: translateY(-1px); }
 
+        .dialog-overlay.active .dialog-box {
+            transform: translateY(0) scale(1);
+        }
+
+        .dialog-icon-wrapper {
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px auto;
+            font-size: 26px;
+        }
+
+        /* Error State (for incorrect password) */
+        .dialog-error .dialog-icon-wrapper {
+            color: var(--accent);
+            border-color: var(--accent);
+            background: rgba(255, 0, 0, 0.1);
+        }
+
+        .dialog-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .dialog-msg {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .dialog-btn {
+            width: 100%;
+            padding: 12px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .dialog-btn:hover {
+            background: #cc0000;
+            box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
+            transform: translateY(-1px);
+        }
     </style>
 </head>
+
 <body>
 
-<div class="login-box">
-    <h3>Admin Login</h3>
-    <p>Access the dashboard using the secure key.</p>
-    <div class="input-group">
-        <input type="password" id="password" class="password-input" placeholder="Enter password" onkeydown="if(event.key === 'Enter') checkPassword()">
-    </div>
-    <button class="login-btn" onclick="checkPassword()">
-        <i class="fas fa-lock"></i> Login
-    </button>
-</div>
-
-<!-- Custom Dialog Component -->
-<div id="customDialog" class="dialog-overlay">
-    <div class="dialog-box" id="dialogBox">
-        <div class="dialog-icon-wrapper" id="dialogIcon">
-            <i class="fas fa-times"></i>
+    <div class="login-box">
+        <h3>Admin Login</h3>
+        <p>Access the dashboard using the secure key.</p>
+        <div class="input-group">
+            <input type="password" id="password" class="password-input" placeholder="Enter password"
+                onkeydown="if(event.key === 'Enter') checkPassword()">
         </div>
-        <h3 class="dialog-title" id="dialogTitle">Error</h3>
-        <p class="dialog-msg" id="dialogMsg">Incorrect Password!</p>
-        <button class="dialog-btn" onclick="closeDialog()">Try Again</button>
+        <button class="login-btn" onclick="checkPassword()">
+            <i class="fas fa-lock"></i> Login
+        </button>
     </div>
-</div>
 
-<script>
-    // --- DIALOG LOGIC (Reused from your Admin Page) ---
-    function showDialog(type, title, message) {
-        const overlay = document.getElementById('customDialog');
-        const box = document.getElementById('dialogBox');
-        const iconContainer = document.getElementById('dialogIcon');
-        const titleEl = document.getElementById('dialogTitle');
-        const msgEl = document.getElementById('dialogMsg');
+    <!-- Custom Dialog Component -->
+    <div id="customDialog" class="dialog-overlay">
+        <div class="dialog-box" id="dialogBox">
+            <div class="dialog-icon-wrapper" id="dialogIcon">
+                <i class="fas fa-times"></i>
+            </div>
+            <h3 class="dialog-title" id="dialogTitle">Error</h3>
+            <p class="dialog-msg" id="dialogMsg">Incorrect Password!</p>
+            <button class="dialog-btn" onclick="closeDialog()">Try Again</button>
+        </div>
+    </div>
 
-        // Reset classes
-        box.classList.remove('dialog-success', 'dialog-error', 'dialog-loading');
+    <script>
+        // --- DIALOG LOGIC (Reused from your Admin Page) ---
+        function showDialog(type, title, message) {
+            const overlay = document.getElementById('customDialog');
+            const box = document.getElementById('dialogBox');
+            const iconContainer = document.getElementById('dialogIcon');
+            const titleEl = document.getElementById('dialogTitle');
+            const msgEl = document.getElementById('dialogMsg');
 
-        titleEl.innerText = title;
-        msgEl.innerText = message;
-        
-        // This login only uses 'error' and 'success' logic, but we keep the structure
-        if (type === 'error') {
-            box.classList.add('dialog-error');
-            iconContainer.innerHTML = '<i class="fas fa-times"></i>';
-        } else if (type === 'success') {
-             // We don't use the success dialog here, but good practice to keep the type.
-            box.classList.add('dialog-success');
-            iconContainer.innerHTML = '<i class="fas fa-check"></i>';
+            // Reset classes
+            box.classList.remove('dialog-success', 'dialog-error', 'dialog-loading');
+
+            titleEl.innerText = title;
+            msgEl.innerText = message;
+
+            // This login only uses 'error' and 'success' logic, but we keep the structure
+            if (type === 'error') {
+                box.classList.add('dialog-error');
+                iconContainer.innerHTML = '<i class="fas fa-times"></i>';
+            } else if (type === 'success') {
+                // We don't use the success dialog here, but good practice to keep the type.
+                box.classList.add('dialog-success');
+                iconContainer.innerHTML = '<i class="fas fa-check"></i>';
+            }
+
+            overlay.classList.add('active');
         }
 
-        overlay.classList.add('active');
-    }
-
-    function closeDialog() {
-        document.getElementById('customDialog').classList.remove('active');
-        document.getElementById("password").focus(); // Focus back on input after closing
-    }
-    
-    // --- LOGIN LOGIC ---
-    function checkPassword() {
-        const passwordInput = document.getElementById("password");
-        const pwd = passwordInput.value;
-        const correctPwd = "Mukesh123"; // The hardcoded password
-
-        if (pwd === correctPwd) {
-            // Success: Redirect to the admin page
-            window.location.href = "AdminPage.html"; 
-        } else {
-            // Failure: Show the custom error dialog
-            showDialog('error', 'Authentication Failed', 'The password entered is incorrect. Please try again.');
-            passwordInput.value = ''; // Clear the input field on failure
+        function closeDialog() {
+            document.getElementById('customDialog').classList.remove('active');
+            document.getElementById("password").focus(); // Focus back on input after closing
         }
-    }
-</script>
+
+        // --- LOGIN LOGIC ---
+        function checkPassword() {
+            const passwordInput = document.getElementById("password");
+            const pwd = passwordInput.value;
+            const correctPwd = "FTW"; // The hardcoded password
+
+            if (pwd === correctPwd) {
+                // Success: Redirect to the admin page
+                window.location.href = "AdminPage.html";
+            } else {
+                // Failure: Show the custom error dialog
+                showDialog('error', 'Authentication Failed', 'The password entered is incorrect. Please try again.');
+                passwordInput.value = ''; // Clear the input field on failure
+            }
+        }
+    </script>
 </body>
+
 </html>
