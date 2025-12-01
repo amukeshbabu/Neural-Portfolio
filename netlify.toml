@@ -1,5 +1,0 @@
-[[redirects]]
-  from = "/admin.html"
-  to = "/admin-login.html"
-  status = 301
-  force = true
