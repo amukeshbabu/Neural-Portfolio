@@ -1,16 +1,35 @@
 exports.handler = async (event) => {
-    const { password } = JSON.parse(event.body);
-    const correctPassword = process.env.ADMIN_AUTH_CREDENTIALS;
+    try {
+        if (!event.body) {
+            return {
+                statusCode: 400,
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ success: false, error: "No input received" })
+            };
+        }
 
-    if (password === correctPassword) {
+        const { password } = JSON.parse(event.body);
+        const correctPassword = process.env.ADMIN_AUTH_CREDENTIALS;
+
+        if (password === correctPassword) {
+            return {
+                statusCode: 200,
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ success: true })
+            };
+        }
+
         return {
-            statusCode: 200,
-            body: JSON.stringify({ success: true })
+            statusCode: 401,
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ success: false })
+        };
+
+    } catch (err) {
+        return {
+            statusCode: 500,
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ success: false, error: "Server error" })
         };
     }
-
-    return {
-        statusCode: 401,
-        body: JSON.stringify({ success: false })
-    };
 };

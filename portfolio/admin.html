@@ -118,19 +118,23 @@
 
             const res = await fetch("/.netlify/functions/checkAuth", {
                 method: "POST",
+                headers: {
+                    "Content-Type": "application/json"   // IMPORTANT
+                },
                 body: JSON.stringify({ password: pass })
             });
 
             const data = await res.json();
 
             if (data.success) {
+                localStorage.setItem("adminAuth", "yes");
                 window.location.href = "AdminPage.html";
             } else {
                 alert("Wrong password");
             }
         }
-
     </script>
+
 
 </body>
 
