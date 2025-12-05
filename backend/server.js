@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // MongoDB Atlas Connection
-mongoose.connect("mongodb+srv://amukeshbabu_db:Annadurai@portfoliodb.ysedzau.mongodb.net/PortfolioDB")
+mongoose.connect("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
     .then(() => console.log("MongoDB Connected"))
     .catch(err => console.error("MongoDB connection error:", err));
 
