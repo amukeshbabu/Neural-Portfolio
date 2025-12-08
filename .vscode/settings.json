@@ -2,5 +2,6 @@
     "editor.fontFamily": "JetBrains Mono",
     "editor.fontLigatures": true,
     "editor.fontSize": 16,
-    "editor.fontWeight": "500"
+    "editor.fontWeight": "500",
+    "liveServer.settings.port": 5501
 }
