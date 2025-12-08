@@ -1,3 +1,15 @@
+@font-face {
+    font-family: 'Sharpie Variable';
+    /* Choose a unique name for the font */
+    src: url('./Assests/Sharpie-Variable.ttf') format('truetype-variations');
+    /* Correct path and format */
+    font-weight: 100 900;
+    /* Define the range for variable fonts */
+    font-style: normal;
+    font-display: swap;
+    /* Best practice for loading */
+}
+
 :root {
     /* MATCHING ADMIN VARIABLES */
     --bg-body: #050505;
@@ -8,6 +20,7 @@
     --accent: #ff0000;
     --accent-glow: rgba(255, 0, 0, 0.25);
     --border: #222;
+    /* --- RESTORED: Default font for global body text --- */
     --font: 'Poppins', sans-serif;
     --radius: 12px;
 }
@@ -89,9 +102,12 @@ body {
 }
 
 .logo {
-    font-size: 22px;
+    font-size: 32px;
     font-weight: 700;
     letter-spacing: -0.5px;
+    /* --- MODIFIED: Apply Sharpie Variable to Logo --- */
+    font-family: 'Sharpie Variable', 'Poppins', sans-serif;
+
 }
 
 .logo span {
@@ -199,6 +215,7 @@ body {
     overflow: hidden;
     /* FIX 3: Ensure Hero text color is explicitly white */
     color: #ffffff;
+    font-family: ;
 }
 
 /* IMAGE LAYER */
@@ -232,11 +249,13 @@ body {
 }
 
 .hero-content h1 {
-    font-size: clamp(40px, 6vw, 75px);
+    font-size: clamp(90px, 6vw, 120px);
     font-weight: 700;
     margin-bottom: 15px;
     line-height: 1.1;
     letter-spacing: -1px;
+    /* --- MODIFIED: Apply Sharpie Variable to Hero H1 --- */
+    font-family: 'Sharpie Variable', 'Poppins', sans-serif;
 }
 
 .hero-content h2 {
@@ -286,42 +305,7 @@ body {
     }
 }
 
-/* SCROLL INDICATOR */
-.scroll-indicator {
-    position: absolute;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 20px;
-    height: 35px;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    border-radius: 20px;
-}
-
-.scroll-indicator::before {
-    content: '';
-    position: absolute;
-    top: 6px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 4px;
-    height: 4px;
-    background: white;
-    border-radius: 50%;
-    animation: scrollWheel 2s infinite;
-}
-
-@keyframes scrollWheel {
-    0% {
-        top: 6px;
-        opacity: 1;
-    }
-
-    100% {
-        top: 20px;
-        opacity: 0;
-    }
-}
+/* DUPLICATE SCROLL INDICATOR BLOCK REMOVED */
 
 /* SECTIONS & SPACING - SIGNIFICANTLY REDUCED */
 .container {
@@ -351,6 +335,8 @@ section.visible {
     position: relative;
     color: var(--text-main);
     font-weight: 600;
+    /* --- MODIFIED: Apply Sharpie Variable to Section Titles --- */
+    font-family: 'Sharpie Variable', sans-serif;
 }
 
 .section-title::after {
