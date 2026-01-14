@@ -239,4 +239,78 @@
     </div>
 
     <script>
-        // --- DIALOG LOGIC (Reused from your Admin Page)
+        // --- DIALOG LOGIC ---
+        function showDialog(type, title, message) {
+            const overlay = document.getElementById('customDialog');
+            const box = document.getElementById('dialogBox');
+            const iconContainer = document.getElementById('dialogIcon');
+            const titleEl = document.getElementById('dialogTitle');
+            const msgEl = document.getElementById('dialogMsg');
+
+            box.classList.remove('dialog-success', 'dialog-error', 'dialog-loading');
+            titleEl.innerText = title;
+            msgEl.innerText = message;
+
+            if (type === 'error') {
+                box.classList.add('dialog-error');
+                iconContainer.innerHTML = '<i class="fas fa-times"></i>';
+            }
+
+            overlay.classList.add('active');
+        }
+
+        function closeDialog() {
+            document.getElementById('customDialog').classList.remove('active');
+            document.getElementById("password").focus();
+        }
+
+        // --- SECURE LOGIN LOGIC ---
+
+        // This is the SHA-256 Hash for the password "admin"
+        // If someone reads your code on GitHub, they will see this, not "admin"
+        const TARGET_HASH = "a3e6a06736977f428ee1f5a2bf41c6e46c91e2381ac6079e2c67bfa9d244b673";
+
+        async function checkPassword() {
+            const passwordInput = document.getElementById("password");
+            const pwd = passwordInput.value;
+            const btn = document.querySelector('.login-btn');
+
+            // 1. Add visual feedback (Loading)
+            const originalBtnText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Verifying...';
+            btn.style.opacity = '0.8';
+
+            // 2. Calculate Hash
+            const hash = await sha256(pwd);
+
+            // 3. Compare Hash
+            if (hash === TARGET_HASH) {
+                sessionStorage.setItem("admin_access_token", "secure_active");
+                setTimeout(() => {
+                    window.location.href = "AdminPage.html";
+                }, 500);
+            } else {
+                showDialog('error', 'Access Denied', 'The secure key is invalid.');
+                passwordInput.value = '';
+                btn.innerHTML = originalBtnText; // Reset button
+                btn.style.opacity = '1';
+            }
+        }
+
+        // Cryptographic Function to generate the hash
+        async function sha256(message) {
+            const msgBuffer = new TextEncoder().encode(message);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+            return hashHex;
+        }
+
+        // Allow Enter Key
+        document.getElementById('password').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') checkPassword();
+        });
+    </script>
+</body>
+
+</html>

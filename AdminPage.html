@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,7 +22,11 @@
             --radius: 12px;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         body {
             font-family: var(--font);
@@ -29,130 +34,308 @@
             color: var(--text-main);
             min-height: 100vh;
             padding-top: 100px;
-            background-image: 
+            background-image:
                 radial-gradient(circle at 0% 0%, #1a0000 0%, transparent 35%),
                 radial-gradient(circle at 100% 100%, #0a0a0a 0%, transparent 35%);
             background-attachment: fixed;
         }
 
-        .container { max-width: 1300px; margin: 0 auto; padding: 0 25px 50px; }
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 25px 50px;
+        }
 
         /* NAVBAR */
         .navbar {
-            width: 100%; height: 80px;
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 0 5%; position: fixed; top: 0; z-index: 1000;
+            width: 100%;
+            height: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
             background: rgba(5, 5, 5, 0.8);
-            backdrop-filter: blur(20px); border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
         }
 
-        .logo { font-size: 20px; font-weight: 800; letter-spacing: -0.5px; }
-        .logo span { color: var(--accent); }
-        .nav-links { display: flex; gap: 25px; list-style: none; }
-        .nav-links a { 
-            text-decoration: none; color: var(--text-muted); 
-            font-size: 12px; font-weight: 600; text-transform: uppercase; 
-            letter-spacing: 1px; transition: 0.3s;
+        .logo {
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
         }
-        .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--accent);
+        }
 
         /* HEADER & SEARCH */
         .admin-header {
-            display: flex; justify-content: space-between; align-items: flex-end;
-            margin-bottom: 35px; flex-wrap: wrap; gap: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 35px;
+            flex-wrap: wrap;
+            gap: 20px;
         }
 
-        .header-left h2 { font-size: 2rem; font-weight: 700; margin-bottom: 5px; }
-        .header-left p { color: var(--text-muted); font-size: 0.9rem; }
+        .header-left h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
 
-        .header-actions { display: flex; gap: 12px; }
+        .header-left p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 12px;
+        }
 
         .search-box {
-            background: var(--bg-card); border: 1px solid var(--border);
-            border-radius: 8px; padding: 10px 15px; display: flex; align-items: center;
-            gap: 10px; width: 300px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 300px;
         }
+
         .search-box input {
-            background: transparent; border: none; color: white; outline: none; width: 100%;
+            background: transparent;
+            border: none;
+            color: white;
+            outline: none;
+            width: 100%;
         }
 
         .btn {
-            padding: 10px 18px; border-radius: 8px; cursor: pointer;
-            font-weight: 600; display: flex; align-items: center; gap: 8px;
-            transition: 0.3s; border: 1px solid transparent; font-family: var(--font);
+            padding: 10px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.3s;
+            border: 1px solid transparent;
+            font-family: var(--font);
         }
-        .btn-primary { background: var(--accent); color: white; }
-        .btn-primary:hover { background: #e60000; box-shadow: 0 0 20px var(--accent-glow); }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #e60000;
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
 
         /* STATS */
         .stats-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px; margin-bottom: 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
         }
+
         .stat-card {
-            background: var(--bg-card); border: 1px solid var(--border);
-            padding: 25px; border-radius: var(--radius);
-            display: flex; justify-content: space-between; align-items: center;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 25px;
+            border-radius: var(--radius);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
+
         .stat-icon {
-            width: 50px; height: 50px; border-radius: 10px;
-            background: var(--accent-glow); color: var(--accent);
-            display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            background: var(--accent-glow);
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
         }
-        .stat-val { font-size: 2.2rem; font-weight: 700; display: block; }
-        .stat-label { color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        .stat-val {
+            font-size: 2.2rem;
+            font-weight: 700;
+            display: block;
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
 
         /* TABLE */
         .table-container {
-            background: var(--bg-card); border: 1px solid var(--border);
-            border-radius: var(--radius); overflow: hidden;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
             backdrop-filter: blur(10px);
         }
-        .msg-table { width: 100%; border-collapse: collapse; }
-        .msg-table th {
-            text-align: left; padding: 20px; color: var(--text-muted);
-            font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px;
-            border-bottom: 1px solid var(--border); background: rgba(255,255,255,0.01);
+
+        .msg-table {
+            width: 100%;
+            border-collapse: collapse;
         }
-        .msg-table td { padding: 20px; border-bottom: 1px solid var(--border); vertical-align: middle; }
-        .msg-table tr:hover { background: rgba(255,255,255,0.02); }
+
+        .msg-table th {
+            text-align: left;
+            padding: 20px;
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.01);
+        }
+
+        .msg-table td {
+            padding: 20px;
+            border-bottom: 1px solid var(--border);
+            vertical-align: middle;
+        }
+
+        .msg-table tr:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
 
         .badge-new {
-            background: #00ff88; color: #000; padding: 2px 8px;
-            border-radius: 4px; font-size: 10px; font-weight: 800;
-            margin-left: 8px; vertical-align: middle;
+            background: #00ff88;
+            color: #000;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 800;
+            margin-left: 8px;
+            vertical-align: middle;
         }
 
-        .action-group { display: flex; gap: 8px; }
-        .icon-btn {
-            width: 35px; height: 35px; border-radius: 6px; border: 1px solid var(--border);
-            background: transparent; color: var(--text-muted); cursor: pointer; transition: 0.2s;
+        .action-group {
+            display: flex;
+            gap: 8px;
         }
-        .icon-btn:hover { border-color: var(--accent); color: var(--accent); }
-        .icon-btn.del:hover { background: var(--accent); color: white; }
+
+        .icon-btn {
+            width: 35px;
+            height: 35px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .icon-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .icon-btn.del:hover {
+            background: var(--accent);
+            color: white;
+        }
 
         /* MODALS / DIALOGS */
         .dialog-overlay {
-            position: fixed; inset: 0; background: rgba(0,0,0,0.85);
-            backdrop-filter: blur(8px); z-index: 2000;
-            display: flex; align-items: center; justify-content: center;
-            opacity: 0; visibility: hidden; transition: 0.3s;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s;
         }
-        .dialog-overlay.active { opacity: 1; visibility: visible; }
+
+        .dialog-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
         .dialog-box {
-            background: #111; border: 1px solid var(--border);
-            width: 90%; max-width: 500px; padding: 40px; border-radius: 20px;
-            text-align: center; transform: translateY(30px); transition: 0.4s cubic-bezier(0.17, 0.8, 0.3, 1.1);
+            background: #111;
+            border: 1px solid var(--border);
+            width: 90%;
+            max-width: 500px;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            transform: translateY(30px);
+            transition: 0.4s cubic-bezier(0.17, 0.8, 0.3, 1.1);
         }
-        .dialog-overlay.active .dialog-box { transform: translateY(0); }
+
+        .dialog-overlay.active .dialog-box {
+            transform: translateY(0);
+        }
 
         /* LOADING SPINNER */
-        .spinner { animation: rotate 1s linear infinite; }
-        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .spinner {
+            animation: rotate 1s linear infinite;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
 
         @media (max-width: 768px) {
-            .search-box { width: 100%; }
-            .header-actions { width: 100%; flex-direction: column; }
+            .search-box {
+                width: 100%;
+            }
+
+            .header-actions {
+                width: 100%;
+                flex-direction: column;
+            }
         }
     </style>
 </head>
@@ -177,7 +360,8 @@
             <div class="header-actions">
                 <div class="search-box">
                     <i class="fas fa-search"></i>
-                    <input type="text" id="searchInput" placeholder="Search contacts or messages..." onkeyup="filterMessages()">
+                    <input type="text" id="searchInput" placeholder="Search contacts or messages..."
+                        onkeyup="filterMessages()">
                 </div>
                 <button class="btn btn-primary" onclick="fetchMessages()">
                     <i class="fas fa-sync-alt" id="refreshIcon"></i> Sync
@@ -226,7 +410,7 @@
     <div id="customDialog" class="dialog-overlay">
         <div class="dialog-box" id="dialogBox">
             <div id="modalContent">
-                </div>
+            </div>
         </div>
     </div>
 
@@ -234,20 +418,36 @@
         const API_URL = "https://portfolio-vqoz.onrender.com/api/messages";
         let allMessages = [];
 
-        // 1. Initial Access Check
+        // --- 1. SECURITY CHECK (THE GATEKEEPER) ---
         function checkAuth() {
-            const referrer = document.referrer;
-            // Note: In a real app, check for a valid Token in localStorage
-            if (!sessionStorage.getItem('admin_session') && !referrer.includes("admin-login.html")) {
+            // Check if the session key exists
+            const token = sessionStorage.getItem("admin_access_token");
+
+            if (token !== "secure_active") {
+                // If no token, force redirect to login
                 window.location.href = "admin-login.html";
+                // Stop the rest of the page from loading data
+                return false;
             }
+            return true;
         }
 
-        // 2. Data Fetching
+        // --- 2. LOGOUT FUNCTION ---
+        function logout() {
+            // Destroy the session key
+            sessionStorage.removeItem("admin_access_token");
+            sessionStorage.clear();
+            window.location.href = "admin-login.html";
+        }
+
+        // --- 3. DATA FETCHING ---
         async function fetchMessages() {
+            // Safety check before fetching sensitive data
+            if (!checkAuth()) return;
+
             const btn = document.querySelector('.btn-primary');
             const icon = document.getElementById('refreshIcon');
-            
+
             icon.classList.add('spinner');
             btn.style.opacity = '0.7';
 
@@ -259,14 +459,14 @@
                 document.getElementById('lastUpdate').innerText = `System synced: ${new Date().toLocaleTimeString()}`;
             } catch (error) {
                 console.error("Fetch error:", error);
-                showNotification('error', 'Sync Failed', 'Could not establish connection to the neural grid.');
+                alert('Sync Failed: Could not connect to database.');
             } finally {
                 icon.classList.remove('spinner');
                 btn.style.opacity = '1';
             }
         }
 
-        // 3. Rendering
+        // --- 4. RENDERING & UTILS ---
         function renderMessages(data) {
             const tbody = document.getElementById("messageTableBody");
             tbody.innerHTML = "";
@@ -278,65 +478,62 @@
 
             data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).forEach(msg => {
                 const date = new Date(msg.createdAt);
-                const isNew = (new Date() - date) < 86400000; // Last 24h
+                const isNew = (new Date() - date) < 86400000;
 
                 const row = document.createElement("tr");
                 row.innerHTML = `
-                    <td>
-                        <div style="font-weight:700">${msg.name} ${isNew ? '<span class="badge-new">NEW</span>' : ''}</div>
-                        <div style="font-size:0.8rem; color:var(--accent)">${msg.email}</div>
-                    </td>
-                    <td>
-                        <div style="max-width:500px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; color:#bbb">
-                            ${msg.message}
-                        </div>
-                    </td>
-                    <td style="font-size:0.85rem; color:var(--text-muted)">
-                        ${date.toLocaleDateString()} <br> ${date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
-                    </td>
-                    <td>
-                        <div class="action-group">
-                            <button class="icon-btn" onclick="viewMessage('${msg._id}')" title="Read"><i class="fas fa-eye"></i></button>
-                            <button class="icon-btn del" onclick="confirmDelete('${msg._id}')" title="Purge"><i class="fas fa-trash-alt"></i></button>
-                        </div>
-                    </td>
-                `;
+                <td>
+                    <div style="font-weight:700">${msg.name} ${isNew ? '<span class="badge-new">NEW</span>' : ''}</div>
+                    <div style="font-size:0.8rem; color:var(--accent)">${msg.email}</div>
+                </td>
+                <td>
+                    <div style="max-width:500px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; color:#bbb">
+                        ${msg.message}
+                    </div>
+                </td>
+                <td style="font-size:0.85rem; color:var(--text-muted)">
+                    ${date.toLocaleDateString()} <br> ${date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                </td>
+                <td>
+                    <div class="action-group">
+                        <button class="icon-btn" onclick="viewMessage('${msg._id}')" title="Read"><i class="fas fa-eye"></i></button>
+                        <button class="icon-btn del" onclick="confirmDelete('${msg._id}')" title="Purge"><i class="fas fa-trash-alt"></i></button>
+                    </div>
+                </td>
+            `;
                 tbody.appendChild(row);
             });
         }
 
-        // 4. Interaction Logic
         function viewMessage(id) {
             const msg = allMessages.find(m => m._id === id);
             const content = `
-                <div style="text-align:left">
-                    <h3 style="margin-bottom:20px; color:var(--accent)">Communication Log</h3>
-                    <p style="margin-bottom:10px"><strong>From:</strong> ${msg.name} (${msg.email})</p>
-                    <p style="margin-bottom:20px"><strong>Received:</strong> ${new Date(msg.createdAt).toLocaleString()}</p>
-                    <div style="background:#000; padding:20px; border-radius:10px; border:1px solid var(--border); line-height:1.6">
-                        ${msg.message}
-                    </div>
-                    <button class="btn btn-primary" style="margin-top:25px; width:100%" onclick="closeDialog()">Close Log</button>
+            <div style="text-align:left">
+                <h3 style="margin-bottom:20px; color:var(--accent)">Communication Log</h3>
+                <p style="margin-bottom:10px"><strong>From:</strong> ${msg.name} (${msg.email})</p>
+                <p style="margin-bottom:20px"><strong>Received:</strong> ${new Date(msg.createdAt).toLocaleString()}</p>
+                <div style="background:#000; padding:20px; border-radius:10px; border:1px solid var(--border); line-height:1.6">
+                    ${msg.message}
                 </div>
-            `;
+                <button class="btn btn-primary" style="margin-top:25px; width:100%" onclick="closeDialog()">Close Log</button>
+            </div>
+        `;
             document.getElementById('modalContent').innerHTML = content;
             document.getElementById('customDialog').classList.add('active');
         }
 
         function filterMessages() {
             const term = document.getElementById('searchInput').value.toLowerCase();
-            const filtered = allMessages.filter(m => 
-                m.name.toLowerCase().includes(term) || 
-                m.email.toLowerCase().includes(term) || 
+            const filtered = allMessages.filter(m =>
+                m.name.toLowerCase().includes(term) ||
+                m.email.toLowerCase().includes(term) ||
                 m.message.toLowerCase().includes(term)
             );
             renderMessages(filtered);
         }
 
         async function confirmDelete(id) {
-            const confirmed = confirm("This action will permanently purge this record from the core. Proceed?");
-            if (!confirmed) return;
-
+            if (!confirm("Permanently delete this message?")) return;
             try {
                 const res = await fetch(`${API_URL}/${id}`, { method: 'DELETE' });
                 if (res.ok) {
@@ -344,15 +541,13 @@
                     renderMessages(allMessages);
                     updateStats(allMessages);
                 }
-            } catch (err) {
-                alert("Purge sequence failed.");
-            }
+            } catch (err) { alert("Delete failed."); }
         }
 
         function updateStats(data) {
             document.getElementById("totalCount").innerText = data.length;
-            const today = new Date().setHours(0,0,0,0);
-            const recent = data.filter(m => new Date(m.createdAt).setHours(0,0,0,0) === today).length;
+            const today = new Date().setHours(0, 0, 0, 0);
+            const recent = data.filter(m => new Date(m.createdAt).setHours(0, 0, 0, 0) === today).length;
             document.getElementById("recentCount").innerText = recent;
         }
 
@@ -360,15 +555,18 @@
             document.getElementById('customDialog').classList.remove('active');
         }
 
-        function logout() {
-            sessionStorage.clear();
-            window.location.href = "admin-login.html";
-        }
-
+        // --- 5. INITIALIZATION ---
         document.addEventListener("DOMContentLoaded", () => {
-            // checkAuth(); // Enable this when login is ready
-            fetchMessages();
+            // Run security check immediately
+            if (checkAuth()) {
+                // Only fetch data if check passes
+                fetchMessages();
+            } else {
+                // Hide body to prevent flashing content while redirecting
+                document.body.style.display = 'none';
+            }
         });
     </script>
 </body>
+
 </html>

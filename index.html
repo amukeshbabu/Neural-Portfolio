@@ -123,18 +123,23 @@
         }
 
         /* --- UX: LIQUID CURSOR STYLES --- */
+        /* Find this class in your <style> tag and replace it with this: */
         .curzr {
             position: fixed;
             top: 0;
             left: 0;
-            width: 30px;
-            height: 30px;
+            width: 100px;
+            /* Increased from 30px to prevent clipping */
+            height: 100px;
+            /* Increased from 30px */
             pointer-events: none;
             user-select: none;
             z-index: 2147483647;
             mix-blend-mode: screen;
-            /* Ensure no CSS transition interferes with JS RAF loop */
             transition: none;
+            border-radius: 50%;
+            overflow: visible;
+            /* Ensures the blur trail isn't cut off */
         }
 
         .curzr-motion-blur circle {
@@ -1489,7 +1494,7 @@
                         <span class="pill"><i class="fab fa-react"></i> React</span>
                         <span class="pill"><i class="fab fa-node-js"></i> Node</span>
                     </div>
-                    <a href="https://agriconnect.freee.nf" target="_blank" rel="noopener noreferrer" class="btn-link">
+                    <a href="https://agriconnect.free.nf" target="_blank" rel="noopener noreferrer" class="btn-link">
                         View Project <i class="fas fa-external-link-alt"
                             style="font-size: 0.8em; margin-left: 5px;"></i>
                     </a>
@@ -1769,6 +1774,7 @@
             /* =========================================
                2. UX: OPTIMIZED LIQUID CURSOR (RAF LOOP)
                ========================================= */
+            /* Inside the MotionBlur class constructor */
             class MotionBlur {
                 constructor() {
                     this.root = document.body;
@@ -1781,13 +1787,16 @@
                     this.velocity = { x: 0, y: 0 };
 
                     this.angle = 0;
-                    this.cursorSize = 30;
+
+                    // CHANGE THIS VALUE FROM 30 TO 100
+                    this.cursorSize = 100;
 
                     this.speed = 0.80;
                     this.degrees = 57.296;
 
                     this.init();
                 }
+                // ... rest of the code remains the same
 
                 init() {
                     this.cursor.style.top = `${this.cursorSize / -2}px`;
