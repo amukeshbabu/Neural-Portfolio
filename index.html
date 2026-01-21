@@ -44,6 +44,7 @@
         }
 
         /* Only hide default cursor on desktop where custom cursor exists */
+        /* Maintain default cursor while the custom element follows it */
         @media (min-width: 1025px) {
 
             body,
@@ -51,8 +52,23 @@
             button,
             input,
             textarea {
-                cursor: none !important;
+                cursor: default;
+                /* Restores the standard pointer */
             }
+
+            /* Optional: Show pointer on interactive elements */
+            a,
+            button,
+            .magnet-btn,
+            .nav-item {
+                cursor: pointer;
+            }
+        }
+
+        /* Ensure the custom cursor doesn't block clicks */
+        .curzr,
+        .cursor-dot-center {
+            pointer-events: none !important;
         }
 
         ::selection {
@@ -1751,25 +1767,44 @@
             gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
             /* =========================================
-               1. UX: FASTER PRELOADER ANIMATION
+               1. UX: ENHANCED ENTRANCE ANIMATION
                ========================================= */
             const tl = gsap.timeline();
+
+            // Faster load bar
             tl.to("#loaderBar", {
                 width: "100%",
-                duration: 0.5,
+                duration: 0.4,
                 ease: "power2.inOut"
             })
+                // Preloader slides away with a slight delay for "Initialization" feel
                 .to(".preloader", {
                     yPercent: -100,
-                    duration: 0.7,
-                    ease: "power4.inOut"
+                    duration: 0.8,
+                    ease: "expo.inOut"
                 })
-                .from("h1", {
-                    y: 50,
+                // Hero Elements Reveal
+                .from(".hero-content > *", {
+                    y: 40,
+                    autoAlpha: 0,
+                    duration: 1,
+                    stagger: 0.15,
+                    ease: "power4.out"
+                }, "-=0.4")
+                // Visual Panel Slide + Scale
+                .from(".hero-visual", {
+                    x: 100,
+                    scale: 0.9,
+                    autoAlpha: 0,
+                    duration: 1.2,
+                    ease: "power3.out"
+                }, "-=1.2")
+                // Background Lines Reveal
+                .from(".hero-bg-lines", {
                     opacity: 0,
-                    duration: 0.7,
-                    stagger: 0.1
-                }, "-=0.3");
+                    duration: 2,
+                    ease: "power2.out"
+                }, "-=1");
 
             /* =========================================
                2. UX: OPTIMIZED LIQUID CURSOR (RAF LOOP)
